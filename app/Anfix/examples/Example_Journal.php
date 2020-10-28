@@ -1,0 +1,40 @@
+<?php
+
+/*
+* 2006-2015 Lucid Networks
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+*
+* DISCLAIMER
+*
+*  Date: 9/2/16 18:57
+*  @author Lucid Networks <info@lucidnetworks.es>
+*  @copyright  2006-2015 Lucid Networks
+*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+
+/**
+ * Métodos especiales de la entidad
+ */
+
+include 'example_utils.php';
+
+$companyId = firstCompanyId(); //Obtención del id de la primera empresa disponible (función únicamente válida para ejemplos)
+
+
+
+$data = App\Anfix\Journal::report([
+      'AccountingPeriodYear' => 2019,
+      'MaxRows' => 300,
+      'JournalTypeId' => '1',
+      'AccountingEntryInitDate' => '01/01/2019',
+      'AccountingEntryEndDate' => '31/12/2019',
+      'FlagIncludeAccountDescription' => true,
+      'MinRowNumber' => 1
+], $companyId);
+print_result('Generación del libro Diario.',$data);

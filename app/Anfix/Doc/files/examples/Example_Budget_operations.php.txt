@@ -1,0 +1,71 @@
+<?php
+
+/*
+* 2006-2015 Lucid Networks
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL => 
+* http => //opensource.org/licenses/afl-3.0.php
+*
+* DISCLAIMER
+*
+*  Date =>  9/2/16 18 => 57
+*  @author Lucid Networks <info@lucidnetworks.es>
+*  @copyright  2006-2015 Lucid Networks
+*  @license    http => //opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+
+/**
+ * Operaciones con presupuestos
+ */
+  
+include 'example_utils.php';  
+
+$companyId = firstCompanyId(); //Obtención del id de la primera empresa disponible (función únicamente válida para ejemplos)
+
+
+    //Listado de presupuestos
+    $budgets = Anfix\CustomerBudget::all($companyId); //Obtenemos el presupuesto con el id indicado o un error si no existe
+    print_result('Listado de id de presupuestos',array_map(function($e){ return $e->CustomerBudgetId; },$budgets));
+
+    //Obtención de un presupuesto con id L,iBgPqlc
+    //$budget = Anfix\CustomerBudget::findOrFail('L,iBgPqlc',$companyId); //Obtenemos el presupuesto con el id indicado o un error si no existe
+
+    //Obtención dl primer presupuesto
+    $budget = Anfix\CustomerBudget::first([],$companyId); //Obtenemos el presupuesto con el id indicado o un error si no existe
+
+    //Reporte del presupuesto
+    $report = \Anfix\DocumentReport::customerBudget([
+        "CustomerBudgetIds" =>  [$budget->CustomerBudgetId],
+        "CustomerBudgetTemplateId" =>  "65",
+        "CustomerBudgetOutputFormat" =>  "PDF",
+        "CustomerBudgetForce" =>  false,
+        "CustomerBudgetTemporal" =>  true
+    ],$companyId);
+    print_result('Reporte del presupuesto',$report);
+
+
+    //Conversión del presupuesto en factura
+    $invoice = $budget->generatedocuments([$budget->CustomerBudgetId],3,$companyId);
+    print_result('Conversión de presupuesto en factura',$invoice);
+
+
+    //Envío del presupuesto por email
+    $mydoc = \Anfix\MyDocuments::send([
+          "Email" => ["patricia.ganan@anfix.com"],
+          "EmailSubject" => "Patosa te ha enviado el presupuesto",
+          "EmailText" => "Presupuesto",
+          "EntryIds" => [$report->MyDocuments->EntryId]
+    ],$companyId);
+    print_result('Envío del presupuesto por email',$mydoc);
+
+
+    //Almacenamiento del presupuesto en local
+    \Anfix\MyDocuments::download($report->MyDocuments->EntryId,'../download/budget.pdf');
+
+
+
+

@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Anfix.html">\Anfix</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">403</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1377650487"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1377650487" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-644827964"></a>
+                                <a href="../namespaces/Anfix.html" style="margin-left: 30px; padding-left: 0">Anfix</a>
+            </div>
+            <div id="namespace-644827964" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-142685980"></a>
+                                <a href="../namespaces/Anfix.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
+            </div>
+            <div id="namespace-142685980" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Anfix.Exceptions.AnfixException.html">AnfixException</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Exceptions.AnfixResponseException.html">AnfixResponseException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Anfix.AccountingAccount.html">AccountingAccount</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.AccountingBankAccount.html">AccountingBankAccount</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.AccountingCompany.html">AccountingCompany</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.AccountingPlan.html">AccountingPlan</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.AccountingPlanParameterBase.html">AccountingPlanParameterBase</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Activity.html">Activity</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Address.html">Address</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Anfix.html">Anfix</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.BankAccount.html">BankAccount</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.BaseModel.html">BaseModel</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Charge.html">Charge</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.City.html">City</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Cnae.html">Cnae</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Company.html">Company</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.CompanyAccountingAccount.html">CompanyAccountingAccount</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.CompanyAccountingAccountManager.html">CompanyAccountingAccountManager</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.CompanyAccountingEntryNote.html">CompanyAccountingEntryNote</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.CompanyAccountingEntryReference.html">Companyaccountingentry</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.CompanyAccountingPeriod.html">CompanyAccountingPeriod</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.CompanyParameter.html">CompanyParameter</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Contact.html">Contact</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Country.html">Country</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Customer.html">Customer</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.CustomerBudget.html">CustomerBudget</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.DataImport.html">DataImport</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.DeductionValue.html">DeductionValue</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Deferment.html">Deferment</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.DocumentReport.html">DocumentReport</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.EconomicActivity.html">EconomicActivity</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Expiration.html">Expiration</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Invoice.html">Invoice</a></li>                 
+                                                    <li class="class"><a href="../classes/Anfix.IssuedInvoice.html">IssuedInvoice</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Journal.html">Journal</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Ledger.html">Ledger</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.LegalPerson.html">LegalPerson</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Media.html">Media</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.MyDocuments.html">MyDocuments</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.SerialAndNumber.html">NextNumberFromSerial</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.OperationKey.html">OperationKey</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.OperationType.html">OperationType</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Organization.html">Organization</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Partner.html">Partner</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.PayChargeMethod.html">PayChargeMethod</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Payment.html">Payment</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.PredefinedAccountingEntry.html">PredefinedAccountingEntry</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.PrintTemplate.html">PrintTemplate</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Province.html">Province</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.ReceivedInvoice.html">ReceivedInvoice</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.RecurringInvoice.html">RecurringInvoice</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.RoadType.html">RoadType</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.SalariedEmployee.html">SalariedEmployee</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Sheet.html">Sheet</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.StaticModel.html">StaticModel</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Supplier.html">Supplier</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.TaxOffice.html">TaxOffice</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.TaxValue.html">TaxValue</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.TaxValue.html">TaxValue</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Template.html">Template</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.TrialBalance.html">TrialBalance</a></li>
+                                                    <li class="class"><a href="../classes/Anfix.Vat.html">Vat</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Anfix.html">\Anfix</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Anfix</small>Anfix</h1>
+                    <p><em>Class Anfix
+Esta clase contiene los métodos base que utiliza la librería
+Debe incluir Anfix.php siempre antes de cada llamada</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Anfix.Anfix.html#method_env" class="">env()</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#method_getEnv" class="">getEnv()</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#method_getHeaders" class="">getHeaders()</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#method_sendRequest" class="">sendRequest()</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#method_getFile" class="">getFile()</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#method_generateToken" class="">generateToken()</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#method_onGeneratedToken" class="">onGeneratedToken()</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#method_invalidateToken" class="">invalidateToken()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Anfix.Anfix.html#property_debug" class="">$debug</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Anfix.Anfix.html#method_sendPost" class="">sendPost()</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#method__getFile" class="">_getFile()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Anfix.Anfix.html#property_curl" class="">$curl</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#property_config" class="">$config</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#property_token" class="">$token</a><br />
+                                                                    <a href="../classes/Anfix.Anfix.html#property_errorsCodes" class="">$errorsCodes</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Anfix.html"><div class="path-wrapper">Anfix.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Anfix</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Anfix\Anfix</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_debug" name="property_debug" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$debug</h3>
+                <pre class="signature">$debug : boolean</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                &mdash; Establece el modo de depuración, muestra los datos enviados y recibidos por curl                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_curl" name="property_curl" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$curl</h3>
+                <pre class="signature">$curl : object</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                object
+                &mdash; Curl                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_config" name="property_config" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$config</h3>
+                <pre class="signature">$config : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; Configuración                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_token" name="property_token" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$token</h3>
+                <pre class="signature">$token : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; Token y secret                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_errorsCodes" name="property_errorsCodes" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$errorsCodes</h3>
+                <pre class="signature">$errorsCodes : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; Traducciones de los errores más comunes                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_env" name="method_env" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">env()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">env(array  <span class="argument">$token = array()</span>, string  <span class="argument">$configFile = null</span>) </pre>
+                <p><em>Establece el entorno (token de la cuenta cliente y configuracion) sobre el que hacer las peticiones</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$token </td>
+                                <td><p>Token y clave para la cuenta a la que deseamos acceder [account_token,account_secret]
+Si no se indica se obtendrán los datos indicados en default_token</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$configFile </td>
+                                <td><p>Path del fichero de configuración
+Si no se indica se obtendrá config.inc.php</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getEnv" name="method_getEnv" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getEnv()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getEnv() : array</pre>
+                <p><em>Devuelve los valores de configuración</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>['config' =&gt; ..., 'token' =&gt; ...]</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHeaders" name="method_getHeaders" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getHeaders()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHeaders(  <span class="argument">$url</span>, array  <span class="argument">$headers</span>) : mixed</pre>
+                <p><em>Devuelve las cabeceras de una petición</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$url </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Anfix\Exceptions\AnfixResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendRequest" name="method_sendRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sendRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendRequest(  <span class="argument">$url</span>, array  <span class="argument">$data</span>, array  <span class="argument">$config = array()</span>, array  <span class="argument">$token = array()</span>, string  <span class="argument">$contentType = &#039;application/json&#039;</span>, array  <span class="argument">$extraHeaders = array()</span>) : mixed</pre>
+                <p><em>Devuelve el retorno de una petición post</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$url </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>Parámetros de la petición</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$config </td>
+                                <td><p>Parámetros de configuración o config por defecto si vacío</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$token </td>
+                                <td><p>['TOKEN','TOKEN_PASSWORD'] o default_token si vacío</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$contentType </td>
+                                <td><p>= 'application/json'</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$extraHeaders </td>
+                                <td><p>= Parámetros extra para las cabeceras</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Anfix\Exceptions\AnfixResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFile" name="method_getFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFile(  <span class="argument">$url</span>, array  <span class="argument">$data</span>, string  <span class="argument">$path</span>, array  <span class="argument">$config = array()</span>, array  <span class="argument">$token = array()</span>) : true</pre>
+                <p><em>Hace una llamada GET  y almacena un fichero retornado en el path indicado</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$url </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>Parámetros de la petición</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td><p>Path absoluto al fichero a guardar</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$config </td>
+                                <td><p>Parámetros de configuración o config por defecto si vacío</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$token </td>
+                                <td><p>['TOKEN','TOKEN_PASSWORD'] o default_token si vacío</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    true
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateToken" name="method_generateToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">generateToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateToken(string  <span class="argument">$identifier</span>, string  <span class="argument">$returnUrl</span>) </pre>
+                <p><em>Inicio de la generación de un token anfix</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$identifier </td>
+                                <td><p>Identificador para control interno</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$returnUrl </td>
+                                <td><p>Url de callback para la entrega de las claves</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Anfix\Exceptions\AnfixResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_onGeneratedToken" name="method_onGeneratedToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">onGeneratedToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">onGeneratedToken(callable  <span class="argument">$function</span>) </pre>
+                <p><em>Realiza la segunda parte de la obtención del token</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$function </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_invalidateToken" name="method_invalidateToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">invalidateToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">invalidateToken(string  <span class="argument">$token</span>, string  <span class="argument">$secret</span>) : mixed</pre>
+                <p><em>Invalida un token</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>Token a invalidar</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$secret </td>
+                                <td><p>Contraseña del token a invalidar</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendPost" name="method_sendPost" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">sendPost()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendPost(string  <span class="argument">$url</span>, array  <span class="argument">$headers</span>, string  <span class="argument">$data = &#039;&#039;</span>, boolean  <span class="argument">$returnHeaders = false</span>) : \Anfix\array(body,headers)</pre>
+                <p><em>Hace una llamada POST con las cabeceras indicadas y devuelve un array con la respuesta</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$url </td>
+                                <td><p>Url a acceder</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td><p>array de arrays sin índices</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$data </td>
+                                <td><p>Datos a enviar</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$returnHeaders </td>
+                                <td><p>= false</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Anfix\Exceptions\AnfixResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Anfix\array(body,headers)
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__getFile" name="method__getFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">_getFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_getFile(string  <span class="argument">$url</span>, array  <span class="argument">$headers</span>, array  <span class="argument">$data</span>, string  <span class="argument">$path</span>) : true</pre>
+                <p><em>Hace una llamada GET con las cabeceras indicadas y almacena un fichero retornado en el path indicado</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$url </td>
+                                <td><p>Url a acceder</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td><p>array de arrays sin índices</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>Datos a enviar por GET</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td><p>Path absoluto al fichero a guardar</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Anfix\Exceptions\AnfixResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    true
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Anfix.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Anfix.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Anfix.html">\Anfix</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 19th, 2016 at 17:27.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

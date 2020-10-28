@@ -1,0 +1,150 @@
+<?php
+
+/*
+* 2006-2015 Lucid Networks
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+*
+* DISCLAIMER
+*
+*  Date: 9/2/16 18:57
+*  @author Lucid Networks <info@lucidnetworks.es>
+*  @copyright  2006-2015 Lucid Networks
+*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+
+namespace App\Anfix\Entities;
+
+use App\Anfix\Exceptions\AnfixException;
+use App\Anfix\Exceptions\AnfixResponseException;
+
+class IssuedInvoice extends BaseModel
+{
+    protected $applicationId = 'e';
+    protected $apiUrlSufix = 'sale/issuedinvoice/';
+    protected $update = true;
+    protected $create = true;
+    protected $delete = true;
+
+    /**
+     * Duplicación de una factura emitida.
+     * @param string $issuedInvoiceIds Identificadores únicos de las facturas emitidas a duplicar
+     * @param string $companyId
+     * @return Object
+     */
+    public static function duplicate($issuedInvoiceIds,$companyId){
+        $obj = new static([],false,$companyId);
+        $result = self::_send(['IssuedInvoiceIds' => $issuedInvoiceIds],$companyId,'duplicate');
+        return $result->outputData->{$obj->Model};
+    }
+
+
+    /**
+     * Vista previa de una factura emitida.
+     * @param $params array con los datos de la factura, IssuedInvoiceTemplateId y IssuedInvoiceTemplateLanguage obligatorios
+     * @param string $companyId
+     * @return Object
+     */
+    public static function preview(array $params,$companyId){
+        $obj = new static([],false,$companyId);
+        $result = self::_send($params,$companyId,'preview');
+        return $result->outputData->{$obj->Model};
+    }
+
+    /**
+     * Generación de factura electrónica.
+     * @param string $eInvoiceFormat = 'facturae32' Especifica el formato de la factura electrónica
+     * @param bool $forced = false Indica si debe forzarse o no la generación de la factura electrónica en caso de que se hubiese almacenado previamente
+     * @param bool $temporal = false Indica si la factura electrónica se almacenará temporalmente
+     * @param string $EInvoiceCertificateId = "1" Identificador del certificado con el que firmar la factura
+     * @param string $EInvoiceCertificateAlias = "AnfixCert" Alias del certificado con el que firmar la factura
+     * @throws AnfixException
+     * @return Object
+     */
+    public function generateEInvoice($eInvoiceFormat = 'facturae32', $forced = false, $temporal = false, $EInvoiceCertificateId = "1", $EInvoiceCertificateAlias = "AnfixCert"){
+        if(! $this->{$this->primaryKey})
+            throw new AnfixException('Para generar una factura electrónica debe partir de una factura ya registrada en anfix');
+
+        $params = [
+            'IssuedInvoiceId' => $this->{$this->primaryKey},
+            'EInvoiceFormat' => $eInvoiceFormat,
+            'Forced' => $forced,
+            'Temporal' => $temporal,
+            'EInvoiceCertificateId' => $EInvoiceCertificateId,
+            'EInvoiceCertificateAlias' => $EInvoiceCertificateAlias
+        ];
+
+        $url = $this->config['applicationIdUrl']['E'].'report/einvoice';
+
+        $result = Anfix::sendRequest($url,[
+            'applicationId' =>  'e',
+            'companyId' => $this->companyId,
+            'inputBusinessData' => [
+                $this->Model => $params
+            ]
+        ] ,$this->config, $this->token);
+
+        return $result->outputData->{$this->Model};
+    }
+
+    /**
+     * Crea un pago de una factura
+     * @param string $date
+     * @param float $amount
+     * @return Charge
+     * @throws AnfixException
+     * @throws AnfixResponseException
+     */
+    public function createPayment($date, $amount, $accountId, $accountTypeId){
+        $formapago = $this->IssuedInvoicePayChargeMethodId == 'b' ? 'Tarjeta' : 'Transferencia';
+        return Charge::create([
+            'ChargeSourceId' => $this->{$this->primaryKey},
+            'ChargeSourceType' => '2', //2 Fra emitida
+            'ChargeDate' => $date,
+            'ChargeDescription' => 'Pago de la factura '.$this->IssuedInvoiceSerialNum.'/'.$this->IssuedInvoiceNumber,
+            'ChargeAmount' => $amount > 0 ? $amount : $amount * -1,
+            'ChargeComments' => 'Pago mediante '.$formapago,
+            'ChargeIsRefund' => $amount < 0,
+            'ChargeAccountId' => $accountId,
+            'ChargeAccountTypeId' => $accountTypeId
+
+        ], $this->companyId);
+    }
+
+    /**
+     * Devuelve el importe total pagado para la factura actual
+     * @return float
+     * @throws AnfixException
+     * @throws AnfixResponseException
+     */
+    public function getAmountPayed(){
+    	$total = 0;
+    	foreach(Charge::where(['ChargeSourceId' => $this->{$this->primaryKey}], $this->companyId)->get() as $charge)
+    		$total += ($charge->ChargeAmount * ($charge->ChargeIsRefund ? -1 : 1));
+
+    	return $total;
+    }
+
+    /**
+     * Informe de IVA repercutido
+     * @param array $params Parámetros para el reporte, AccountingPeriodYear es obligatorio
+     * @param string $companyId Identificador de la empresa
+     * @return Object
+     */
+     public static function reportIssued(array $params,$companyId){
+         $obj = new static([],false,$companyId);
+         $urlBase = str_replace('/cm/','/',$obj->apiBaseUrl);
+         $urlBase = str_replace('/sales/','/',$obj->apiBaseUrl);
+         $result = self::_send($params,$companyId,'report/issuedinvoice',[],[],$urlBase);
+         if(!empty($result->outputData->{$obj->Model}))
+             return $result->outputData->{$obj->Model};
+
+         return $result->outputData;
+     }
+
+}

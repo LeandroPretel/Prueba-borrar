@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="810px" viewBox="0 0 1440 810" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>E337C490-CE5A-4693-824B-ECC68B36DEAE</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1440" height="810"></rect>
+        <rect id="path-3" x="0" y="0" width="1440" height="810"></rect>
+        <filter x="-12.8%" y="-22.7%" width="125.6%" height="145.4%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-14.0%" y="-24.8%" width="127.9%" height="149.6%" filterUnits="objectBoundingBox" id="filter-5">
+            <feMorphology radius="5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="12" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.888530344   0 0 0 0 0.888530344   0 0 0 0 0.888530344  0 0 0 0.331550045 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Emails" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Email">
+            <g id="bg">
+                <g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="bg_primary" fill="#58013E" fill-rule="nonzero" opacity="0.13" xlink:href="#path-1"></use>
+                    <g id="logo/isotipo" opacity="0.1" mask="url(#mask-2)" fill-rule="nonzero">
+                        <g transform="translate(-99.000000, -117.000000)" id="Path">
+                            <path d="M266.740741,564.259259 L590.194157,564.259259 L820.740741,333.582423 L740.972248,253.768864 C695.405817,296.578483 624.100753,295.455919 579.902936,251.233131 C535.705118,207.010343 534.583188,135.664994 577.368635,90.0728186 L497.287325,10.2592593 L266.740741,240.936095 L266.740741,564.259259 Z" fill="#CB2B99"></path>
+                            <polygon fill="#3C3C3B" points="149.477199 681.834949 149.477199 359.074074 10.2592593 498.292014 10.2592593 819.804297 11.1957028 820.740741 333.020134 820.740741 471.925926 681.834949"></polygon>
+                        </g>
+                    </g>
+                    <g id="logo/isotipo" opacity="0.1" mask="url(#mask-2)" fill-rule="nonzero">
+                        <g transform="translate(812.000000, -697.000000)" id="Path">
+                            <path d="M266.740741,564.259259 L590.194157,564.259259 L820.740741,333.582423 L740.972248,253.768864 C695.405817,296.578483 624.100753,295.455919 579.902936,251.233131 C535.705118,207.010343 534.583188,135.664994 577.368635,90.0728186 L497.287325,10.2592593 L266.740741,240.936095 L266.740741,564.259259 Z" fill="#CB2B99"></path>
+                            <polygon fill="#3C3C3B" points="149.477199 681.834949 149.477199 359.074074 10.2592593 498.292014 10.2592593 819.804297 11.1957028 820.740741 333.020134 820.740741 471.925926 681.834949"></polygon>
+                        </g>
+                    </g>
+                    <g id="logo/isotipo" opacity="0.08" mask="url(#mask-2)" fill-rule="nonzero">
+                        <g transform="translate(767.000000, 465.000000)" id="Path">
+                            <path d="M266.740741,564.259259 L590.194157,564.259259 L820.740741,333.582423 L740.972248,253.768864 C695.405817,296.578483 624.100753,295.455919 579.902936,251.233131 C535.705118,207.010343 534.583188,135.664994 577.368635,90.0728186 L497.287325,10.2592593 L266.740741,240.936095 L266.740741,564.259259 Z" fill="#CB2B99"></path>
+                            <polygon fill="#3C3C3B" points="149.477199 681.834949 149.477199 359.074074 10.2592593 498.292014 10.2592593 819.804297 11.1957028 820.740741 333.020134 820.740741 471.925926 681.834949"></polygon>
+                        </g>
+                    </g>
+                    <g id="bg_white" opacity="0.592420015" filter="url(#filter-4)" mask="url(#mask-2)">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-3"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
