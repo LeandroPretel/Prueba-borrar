@@ -14,7 +14,7 @@ jobs:
     name: CD Pipeline
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: Prueba-Borrar
+      PROJECT_NAME: 5
     strategy:
       matrix:
         appname: ["${PROJECT_NAME}-app"]

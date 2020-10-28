@@ -3,7 +3,7 @@
 
 ##Variables
 
-PROJECT_NAME="Prueba-Borrar2"
+PROJECT_NAME="prueba-borrar5"
 
 ## Create a VPC
 AWS_VPC_ID=$(aws ec2 create-vpc \
@@ -161,7 +161,6 @@ AWS_INSTANCE_ID=$(aws ec2 describe-instances --filters Name=tag:Name,Values=${PR
 echo $AWS_PUBLIC_ELASTIC_IP
 sleep 10
 
-aws ec2 associate-address --instance-id $AWS_INSTANCE_ID --public-ip $AWS_PUBLIC_ELASTIC_IP
 
 aws ec2 associate-iam-instance-profile --instance-id $AWS_INSTANCE_ID --iam-instance-profile Name=DeployCI
 aws ec2 create-tags --resources $AWS_INSTANCE_ID --tags "Key=${PROJECT_NAME}-deploy,Value=true"
@@ -169,3 +168,9 @@ aws ec2 create-tags --resources $AWS_INSTANCE_ID --tags "Key=${PROJECT_NAME}-dep
 ## Creation of application
 aws deploy create-application --application-name ${PROJECT_NAME}-app
 aws deploy create-deployment-group --application-name ${PROJECT_NAME}-app --deployment-group-name ${PROJECT_NAME}-group --deployment-config-name CodeDeployDefault.OneAtATime --ec2-tag-filters Key=${PROJECT_NAME}-deploy,Type=KEY_AND_VALUE,Value=true --service-role-arn arn:aws:iam::061242299943:role/CodeDeployServiceRole
+
+## Creation of s3
+
+aws s3 mb s3://${PROJECT_NAME}-s3-bucket --region eu-west-1
+
+aws ec2 associate-address --instance-id $AWS_INSTANCE_ID --public-ip $AWS_PUBLIC_ELASTIC_IP
