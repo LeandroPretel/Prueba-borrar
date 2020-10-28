@@ -19,7 +19,7 @@ jobs:
       matrix:
         appname: ["${PROJECT_NAME}-app"]
         deploy-group: ["${PROJECT_NAME}-group"]
-        s3-bucket: ['aws-codedeploy-deployments-pruebas']
+        s3-bucket: ['${PROJECT_NAME}-s3-bucket']
         s3-filename: ['staging-aws-codedeploy-${{ github.sha }}']
 
     # needs: buildAndTest
