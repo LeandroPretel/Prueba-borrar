@@ -4,7 +4,7 @@ cd /home/ubuntu/backend
 #composer install
 sudo chmod 777 -R storage
 
-cp /home/ubuntu/pruebasCI/petrobutler/petrobutler-backend/scripts/nginx /etc/nginx/sites-available/api.test.pruebas.beebit.es
+cp /home/ubuntu/backend/scripts/nginx /etc/nginx/sites-available/api.test.pruebas.beebit.es
 sudo ln -s /etc/nginx/sites-available/api.test.pruebas.beebit.es /etc/nginx/sites-enabled/api.test.pruebas.beebit.es
 sudo service nginx restart
 
