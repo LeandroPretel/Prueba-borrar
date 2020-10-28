@@ -3,7 +3,7 @@
 
 ##Variables
 
-PROJECT_NAME="Prueba-Borrar12"
+PROJECT_NAME="Prueba-Borrar2"
 
 ## Create a VPC
 AWS_VPC_ID=$(aws ec2 create-vpc \
@@ -149,11 +149,11 @@ aws ec2 create-tags \
 # --resources $AWS_DEFAULT_SECURITY_GROUP_ID \
 # --tags "Key=Name,Value=myvpc-default-security-group"
 
-# aws ec2 create-key-pair --key-name pruebasCICD --query "KeyMaterial" --output text > "/home/leandropretel/Escritorio/pruebasCICD.pem"
+aws ec2 create-key-pair --key-name ${PROJECT_NAME}-key --query "KeyMaterial" --output text > "/home/leandropretel/Escritorio/${PROJECT_NAME}-key.pem"
 
 ## Running instance
 
-aws ec2 run-instances --image-id ami-0823c236601fef765 --count 1 --instance-type t3.nano --key-name pruebasCICD --security-group-ids $AWS_CUSTOM_SECURITY_GROUP_ID --subnet-id $AWS_SUBNET_PUBLIC_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${PROJECT_NAME}}]" --user-data "$(cat /home/leandropretel/Trabajo/Beebit/pruebasCICD/server_install.sh)" 
+aws ec2 run-instances --image-id ami-0823c236601fef765 --count 1 --instance-type t3.nano --key-name ${PROJECT_NAME}-key --security-group-ids $AWS_CUSTOM_SECURITY_GROUP_ID --subnet-id $AWS_SUBNET_PUBLIC_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${PROJECT_NAME}}]" --user-data "$(cat /home/leandropretel/Trabajo/Beebit/pruebasCICD/server_install.sh)" 
 
 
 AWS_PUBLIC_ELASTIC_IP=$(aws ec2 allocate-address --query 'PublicIp' --output text)
@@ -168,4 +168,4 @@ aws ec2 create-tags --resources $AWS_INSTANCE_ID --tags "Key=${PROJECT_NAME}-dep
 
 ## Creation of application
 aws deploy create-application --application-name ${PROJECT_NAME}-app
-aws deploy create-deployment-group --application-name ${PROJECT_NAME}-app --deployment-group-name ${PROJECT_NAME}-group --deployment-config-name CodeDeployDefault.OneAtATime --ec2-tag-filters Key=${PROJECT_NAME}-deploy,Type=KEY_AND_VALUE,Value=true --service-role-arn arn:aws:iam::334416699593:role/CodeDeployServiceRole
+aws deploy create-deployment-group --application-name ${PROJECT_NAME}-app --deployment-group-name ${PROJECT_NAME}-group --deployment-config-name CodeDeployDefault.OneAtATime --ec2-tag-filters Key=${PROJECT_NAME}-deploy,Type=KEY_AND_VALUE,Value=true --service-role-arn arn:aws:iam::061242299943:role/CodeDeployServiceRole
