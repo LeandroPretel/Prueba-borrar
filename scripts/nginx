@@ -1,6 +1,6 @@
 server {
     server_name api.test.pruebas.beebit.es;
-    root /home/ubuntu/backend
+    root /home/ubuntu/app/backend;
 
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-XSS-Protection "1; mode=block";

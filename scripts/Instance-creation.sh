@@ -3,7 +3,7 @@
 
 ##Variables
 
-PROJECT_NAME="prueba-borrar5"
+PROJECT_NAME="prueba-borrar"
 
 ## Create a VPC
 AWS_VPC_ID=$(aws ec2 create-vpc \
