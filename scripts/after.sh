@@ -3,7 +3,7 @@
 cd /home/ubuntu/app/backend
 #composer install
 sudo chmod 777 -R storage
-sudo chmod 777 -R bootsrap
+sudo chmod 777 -R bootsrap/cache
 
 cp /home/ubuntu/app/backend/scripts/nginx /etc/nginx/sites-available/api.test.pruebas.beebit.es
 sudo ln -s /etc/nginx/sites-available/api.test.pruebas.beebit.es /etc/nginx/sites-enabled/api.test.pruebas.beebit.es
