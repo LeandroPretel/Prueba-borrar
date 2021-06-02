@@ -3,7 +3,7 @@
 
 ##Variables
 
-PROJECT_NAME="prueba-borrar7"
+PROJECT_NAME="prueba-borrar"
 
 ## Create a VPC
 AWS_VPC_ID=$(aws ec2 create-vpc \
@@ -159,9 +159,10 @@ aws ec2 run-instances --image-id ami-0823c236601fef765 --count 1 --instance-type
 AWS_PUBLIC_ELASTIC_IP=$(aws ec2 allocate-address --query 'PublicIp' --output text)
 AWS_INSTANCE_ID=$(aws ec2 describe-instances --filters Name=tag:Name,Values=${PROJECT_NAME} --output text --query 'Reservations[*].Instances[*].InstanceId')
 echo $AWS_PUBLIC_ELASTIC_IP
+sleep 10
 
 
-
+aws ec2 associate-iam-instance-profile --instance-id $AWS_INSTANCE_ID --iam-instance-profile Name=DeployCI
 aws ec2 create-tags --resources $AWS_INSTANCE_ID --tags "Key=${PROJECT_NAME}-deploy,Value=true"
 
 ## Creation of application
@@ -171,6 +172,5 @@ aws deploy create-deployment-group --application-name ${PROJECT_NAME}-app --depl
 ## Creation of s3
 
 aws s3 mb s3://${PROJECT_NAME}-s3-bucket --region eu-west-1
-sleep 30
-aws ec2 associate-iam-instance-profile --instance-id $AWS_INSTANCE_ID --iam-instance-profile Name=DeployCI
+
 aws ec2 associate-address --instance-id $AWS_INSTANCE_ID --public-ip $AWS_PUBLIC_ELASTIC_IP
